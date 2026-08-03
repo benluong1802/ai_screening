@@ -754,7 +754,7 @@ function Dashboard() {
       )}
       {reviewContent !== null && (
         <div className="modal-overlay" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.85)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div className="modal-content" onClick={e => e.stopPropagation()} style={{ width: '900px',maxWidth: '90vw', height: '80%', backgroundColor: '#22252a', position: 'relative', borderRadius: '8px', padding: '30px', display: 'flex', flexDirection: 'column', gap: '15px', border: '1px solid #333' }}>
+          <div className="modal-content" onClick={e => e.stopPropagation()} style={{ width: '900px', maxWidth: '90vw', height: '85vh', maxHeight: '85vh', overflow: 'hidden', backgroundColor: '#22252a', position: 'relative', borderRadius: '8px', padding: '30px', display: 'flex', flexDirection: 'column', gap: '15px', border: '1px solid #333' }}>
 
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #333', paddingBottom: '12px' }}>
               <h3 style={{ margin: 0, color: '#fff' }}>Review & Edit Email Draft (AI Generated)</h3>
@@ -794,8 +794,7 @@ function Dashboard() {
                   color: '#fff',
                   flex: 1,
                   overflowY: 'auto',
-                  fontFamily: 'sans-serif',
-                  minHeight: '300px'
+                  minHeight: 0
                 }}
               />
             </div>
