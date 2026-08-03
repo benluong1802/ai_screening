@@ -11,6 +11,7 @@ function ApplyForm() {
     age: "",
     phone: "",
     email: "",
+    address: "",
     job_id: ""
   });
 
