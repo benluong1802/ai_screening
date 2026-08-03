@@ -754,7 +754,7 @@ function Dashboard() {
       )}
       {reviewContent !== null && (
         <div className="modal-overlay" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.85)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div className="modal-content" onClick={e => e.stopPropagation()} style={{ width: '750px', height: '80%', backgroundColor: '#22252a', position: 'relative', borderRadius: '8px', padding: '30px', display: 'flex', flexDirection: 'column', gap: '15px', border: '1px solid #333' }}>
+          <div className="modal-content" onClick={e => e.stopPropagation()} style={{ width: '900px',maxWidth: '90vw', height: '80%', backgroundColor: '#22252a', position: 'relative', borderRadius: '8px', padding: '30px', display: 'flex', flexDirection: 'column', gap: '15px', border: '1px solid #333' }}>
 
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #333', paddingBottom: '12px' }}>
               <h3 style={{ margin: 0, color: '#fff' }}>Review & Edit Email Draft (AI Generated)</h3>
@@ -800,18 +800,27 @@ function Dashboard() {
               />
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', borderTop: '1px solid #333', paddingTop: '15px' }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                gap: "15px",
+                borderTop: "1px solid #333",
+                paddingTop: "15px",
+                flexWrap: "wrap"
+              }}
+            >
               <button
                 onClick={() => { setReviewContent(null); setEditableFeedback(""); }}
                 className="btn-cancel"
-                style={{ padding: '10px 22px', borderRadius: '4px', cursor: 'pointer', backgroundColor: '#333', color: '#fff', border: 'none' }}
+                style={{ padding: '12px 25px', borderRadius: '4px', cursor: 'pointer', backgroundColor: '#333', color: '#fff', border: 'none' }}
               >
                 Cancel
               </button>
               <button
                 onClick={handleConfirmSendEmail}
                 style={{
-                  padding: '10px 25px',
+                  padding: '12px 30px',
                   backgroundColor: pendingStatus === 'Approved' ? '#2ece56' : '#f05454',
                   color: 'white',
                   border: 'none',

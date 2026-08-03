@@ -46,9 +46,15 @@ app.add_middleware(
 
 # Tự động tạo bảng trong PostgreSQL nếu chưa tồn tại
 models.Base.metadata.create_all(bind=engine)
-UPLOAD_DIR = os.getenv("UPLOAD_DIR", "uploads")
+UPLOAD_DIR = os.getenv(
+    "UPLOAD_DIR",
+    "/app/uploads"
+)
 
-os.makedirs(UPLOAD_DIR, exist_ok=True)
+os.makedirs(
+    UPLOAD_DIR,
+    exist_ok=True
+)
 
 app.mount(
     "/uploads",
