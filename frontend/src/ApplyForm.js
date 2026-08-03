@@ -15,6 +15,7 @@ function ApplyForm() {
   });
 
   const [hasCV, setHasCV] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const handleReset = () => {
     setForm({
       name: "",
@@ -38,22 +39,26 @@ function ApplyForm() {
   // ✅ filter jobs (search)
   const filteredJobs = jobs;
   const handleSubmit = async () => {
+    if (isSubmitting) return;
+    setIsSubmitting(true);
     if (!form.name || !form.phone || !form.job_id) {
       alert("Vui lòng nhập tên, số điện thoại và chọn công việc");
+      setIsSubmitting(false);
       return;
     }
 
     if (hasCV === true && !selectedFile) {
       alert("Vui lòng upload CV");
+      setIsSubmitting(false);
       return;
     }
 
     if (hasCV === true) {
       if (selectedFile) {
         const MAX_SIZE = 5 * 1024 * 1024; // 5MB
-
         if (selectedFile.size > MAX_SIZE) {
           alert("PDF must be smaller than 5MB");
+          setIsSubmitting(false);
           return;
         }
       }
@@ -83,6 +88,8 @@ function ApplyForm() {
       } catch (error) {
         console.error(error);
         alert("Không thể gửi hồ sơ");
+      } finally {
+        setIsSubmitting(false);
       }
     }
     if (hasCV === false) {
@@ -90,6 +97,7 @@ function ApplyForm() {
 
       if (answers.length !== jobQuestions.length) {
         alert("Please answer all questions.");
+        setIsSubmitting(false);
         return;
       }
 
@@ -100,6 +108,7 @@ function ApplyForm() {
 
       if (emptyAnswers) {
         alert("Please answer all questions.");
+        setIsSubmitting(false);
         return;
       }
 
@@ -131,6 +140,8 @@ function ApplyForm() {
       } catch (error) {
         console.error(error);
         alert(error);
+      } finally {
+        setIsSubmitting(false);
       }
 
       return;
@@ -210,6 +221,7 @@ function ApplyForm() {
           <p>Bạn có CV không?</p>
 
           <button
+            disabled={isSubmitting}
             className={`btn ${hasCV === true ? "btn-active" : "btn-inactive"}`}
             onClick={() => setHasCV(true)}
           >
@@ -217,6 +229,7 @@ function ApplyForm() {
           </button>
 
           <button
+            disabled={isSubmitting}
             className={`btn ${hasCV === false ? "btn-active" : "btn-inactive"}`}
             onClick={() => setHasCV(false)}
           >
@@ -270,8 +283,24 @@ function ApplyForm() {
 
         {/* ✅ BUTTON */}
         <div className="btn-group">
-          <button className="btn btn-back" onClick={handleReset}>Reset</button>
-          <button className="btn btn-submit" onClick={handleSubmit}>Nộp đơn</button>
+          <button
+            className="btn btn-back"
+            onClick={handleReset}
+            disabled={isSubmitting}
+          >
+            Reset
+          </button>
+          <button
+            className="btn btn-submit"
+            onClick={handleSubmit}
+            disabled={isSubmitting}
+          >
+            {
+              isSubmitting
+                ? "Đang xử lý..."
+                : "Nộp đơn"
+            }
+          </button>
         </div>
 
       </div>

@@ -284,3 +284,7 @@
 .btn-save:hover {
   background-color: #24b047;
 }
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
