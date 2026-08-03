@@ -171,7 +171,7 @@ function ApplyForm() {
 
           <input
             className="input-box"
-            placeholder="Email (optional)"
+            placeholder="Email (Tùy Ý)"
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
           />
