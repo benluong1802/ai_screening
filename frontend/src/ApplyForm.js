@@ -3,7 +3,7 @@ import './ApplyForm.css';
 import { API_URL } from "./config";
 function ApplyForm() {
   const [jobs, setJobs] = useState([]);
-  const [search, setSearch] = useState("");
+  // const [search, setSearch] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [answers, setAnswers] = useState([]);
   const [form, setForm] = useState({
@@ -36,9 +36,7 @@ function ApplyForm() {
   }, []);
 
   // ✅ filter jobs (search)
-  const filteredJobs = jobs.filter(j =>
-    j.title.toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredJobs = jobs;
   const handleSubmit = async () => {
     if (!form.name || !form.phone || !form.job_id) {
       alert("Vui lòng nhập tên, số điện thoại và chọn công việc");
